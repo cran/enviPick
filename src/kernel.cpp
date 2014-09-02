@@ -732,7 +732,7 @@ extern "C"{
                                 }
                             }
                             if(clusterase.size()>0){ /* remove indirect blacklisted links */
-                                for(m=0;m<clusterase.size();m++){
+                                for(m=0;(unsigned)m<clusterase.size();m++){
                                     mergesize=clusterone.size();
                                     n=0;
                                     while(n<mergesize){

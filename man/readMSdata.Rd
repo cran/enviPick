@@ -6,7 +6,7 @@ Read LC-HRMS measurement .mzXML data
 }
 
 \description{
-Initiates an MSlist object and reads LC-HRMS measurement data from .mzXML files into it. 
+Initiates an MSlist object and reads LC-HRMS measurement data from .mzXML files. 
 }
 
 \usage{
@@ -17,7 +17,7 @@ maxRT=FALSE, minmz=FALSE, maxmz=FALSE)
 \arguments{
   \item{filepath.mzXML}{Path to the .mzXML file to be read}
   \item{MSlevel}{numeric 1 (MS) or 2 (MS-MS)}
-  \item{progbar}{Debugging, ignore. Show a progress bar (TRUE or FALSE)? Might only work in Windows OS}
+  \item{progbar}{Show a progress bar (TRUE or FALSE)? Might only work in Windows OS}
   \item{minRT}{Filter for measurements with retention time >= minRT. Otherwise set to FALSE.}
   \item{maxRT}{Filter for measurements with retention time <= maxRT. Otherwise set to FALSE.}
   \item{minmz}{Filter for measurements with m/z >= minmz. Otherwise set to FALSE.}

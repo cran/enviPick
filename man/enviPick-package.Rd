@@ -6,8 +6,8 @@
 Peak picking for high resolution liquid chromatography - mass spectrometry (LC-HRMS) data
 }
 \description{
-Peak picking for centroided .mzXML high-resolution LC-MS data. 
-Built on a three-step approach of (1) data partitioning, (2) unsupervised clustering of extracted ion chromatograms (EIC) of and 
+Peak picking for centroided and baseline-corrected high-resolution LC-MS data.mzXML. 
+Built on a three-step approach of (1) data partitioning, (2) unsupervised clustering of extracted ion chromatograms (EIC) and 
 (3) shape-independent peak detection wihtin individual EICs. Interactive plot access to all results and the underlying raw measurements.
 Browser UI for non-R users. Batch processing.
 }
@@ -21,7 +21,7 @@ Version: \tab 1.0\cr
 Date: \tab 2014-14-07\cr
 License: \tab GPL-2\cr
 }
-After initial upload of an .mzXML standard format file with \code{\link[enviPick]{readMSdata}}, above steps (1) to (3) are 
+After initial upload of an .mzXML file with \code{\link[enviPick]{readMSdata}}, above steps (1) to (3) are 
 calculated by \code{\link[enviPick]{mzagglom}}, \code{\link[enviPick]{mzclust}} and \code{\link[enviPick]{mzpick}}, respectively. 
 The wrapper for joint upload and processing is \code{\link[enviPick]{enviPickwrap}}.
 The raw data and the results of each step, a so-called MSlist object, can be viewed by \code{\link[enviPick]{plotMSlist}}, producing an 

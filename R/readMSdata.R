@@ -1,5 +1,6 @@
 readMSdata <-
-function( filepath.mzXML,
+function( 
+			filepath.mzXML,
 			MSlevel=c(1),
 			progbar=FALSE,
 			minRT=FALSE,
@@ -7,11 +8,21 @@ function( filepath.mzXML,
 			minmz=FALSE,
 			maxmz=FALSE
 		){
-		  
+	
 		##########################################################################
 		# checks #################################################################
-		if(!file.exists(file.path(filepath.mzXML))){stop("invalid filepath.mzML")}
 		if(!is.character(file.path(filepath.mzXML))){stop("filepath.mzML not a character string")}
+		if(!file.exists(file.path(filepath.mzXML))){stop("invalid filepath.mzML")}
+		if(minmz==FALSE){
+			min_mz<-0
+		}else{
+			min_mz<-minmz
+		}
+		if(maxmz==FALSE){
+			max_mz<-Inf
+		}else{
+			max_mz<-maxmz
+		}
 		##########################################################################
 	  
 		##########################################################################
@@ -76,21 +87,16 @@ function( filepath.mzXML,
 			if(any(mz1[[i]]$metaData$msLevel==MSlevel)){
 				if((minRT!=FALSE)&(mz1[[i]]$metaData$retentionTime<minRT)) next
 				if((maxRT!=FALSE)&(mz1[[i]]$metaData$retentionTime>maxRT)) next
-				if(mz1[[i]]$metaData$centroided!=1){
-					stop("\nYour .mzXML-file has not been centroided.\n")
+				if(any(names(mz1[[i]]$metaData)=="centroided")){
+					if(mz1[[i]]$metaData$centroided!=1){
+						stop("\nYour .mzXML-file has not been centroided.\n")
+					}
+				}else{
+					cat("\nYou have ensured your data is centroided ...\n")
 				}
+				
 				RT<-c(RT,mz1[[i]]$metaData$retentionTime)	
-				if(minmz==FALSE){
-					min_mz<-mz1[[i]]$metaData$lowMz
-				}else{
-					min_mz<-minmz
-				}
-				if(maxmz==FALSE){
-					max_mz<-mz1[[i]]$metaData$highMz
-				}else{
-					max_mz<-maxmz
-				}
-				peaknumb<-c(peaknumb+sum(mz1[[i]][[1]]$mass>=min_mz & mz1[[i]][[1]]$mass<=max_mz,na.rm=TRUE))
+				peaknumb<-c(peaknumb + sum(mz1[[i]][[1]]$mass>=min_mz & mz1[[i]][[1]]$mass<=max_mz,na.rm=TRUE))
 			}
 		}
 		if(peaknumb==0){
@@ -109,16 +115,6 @@ function( filepath.mzXML,
 			if(any(mz1[[i]]$metaData$msLevel==MSlevel)){
 				if((minRT!=FALSE)&(mz1[[i]]$metaData$retentionTime<minRT)) next
 				if((maxRT!=FALSE)&(mz1[[i]]$metaData$retentionTime>maxRT)) next
-				if(minmz==FALSE){
-					min_mz<-mz1[[i]]$metaData$lowMz
-				}else{
-					min_mz<-minmz
-				}
-				if(maxmz==FALSE){
-					max_mz<-mz1[[i]]$metaData$highMz
-				}else{
-					max_mz<-maxmz
-				}
 				to<-(from+sum(mz1[[i]][[1]]$mass>=min_mz & mz1[[i]][[1]]$mass<=max_mz,na.rm=TRUE)-1)
 				getpeaks[from:to,1]<-mz1[[i]][[1]]$mass[(mz1[[i]][[1]]$mass>=min_mz & mz1[[i]][[1]]$mass<=max_mz)]
 				getpeaks[from:to,2]<-mz1[[i]][[1]]$intensity[(mz1[[i]][[1]]$mass>=min_mz & mz1[[i]][[1]]$mass<=max_mz)]				

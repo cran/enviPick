@@ -1,6 +1,6 @@
 exportPattern(readMSdata,mzpart,mzagglom,mzclust,mzpick,enviPickbatch,enviPickwrap,plotMSlist,writePeaklist,webpick)
 
-importFrom("shiny")
-importFrom("readMzXmlData")
+import("shiny")
+importFrom("readMzXmlData",readMzXmlFile)
 
 useDynLib(enviPick, getEIC,  masspart, rtpart, densvec, gapfill, pickpeak, picklist, plotit, binRT, binmz, agglom, indexed, partID)

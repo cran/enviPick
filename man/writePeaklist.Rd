@@ -6,7 +6,7 @@ Export a .csv peak table from an MSlist object
 }
 
 \description{
-Given an MSlist object containing peakpicking results (and not just raw measurements or intermediate results of clustering and partitioning),  export a .csv peak table.
+Given an MSlist object containing peak picking results from \code{\link[enviPick]{mzpick}}, export a peak table.csv.
 }
 
 \usage{
@@ -22,7 +22,7 @@ writePeaklist(MSlist, directory, filename, overwrite = FALSE)
 }
 
 \value{
-.csv table written, with columns:
+.csv table, with columns:
 
 		m/z (mean m/z of peak measurements), 
 		var_m/z (m/z variation of peak measurements),

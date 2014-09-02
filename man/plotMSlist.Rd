@@ -4,9 +4,8 @@
 \title{Interactive raw data and result viewer}
 
 \description{
-View your centroided LC-HRMS and partitioning / clustering / peak-picking results interactively. 
+View your centroided LC-HRMS data and partitioning / clustering / peak-picking results. 
 Monitor what peak-picking produces and if it fails; get a grip on optimal parameter settings from comparison with underlying raw data.
-All based on low-level R plot functionality!
 }
 
 \usage{
