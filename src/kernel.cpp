@@ -1,7 +1,7 @@
 /*
 Partitioning, clustering & peak detection for LC-MS centroided data
 author: Martin Loos, Martin.Loos@eawag.ch
-Copyright (c) 2013 Eawag. All rights reserved.
+Copyright (c) 2014 Eawag. All rights reserved.
 */
 
 #include <list>

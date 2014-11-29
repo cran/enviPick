@@ -84,7 +84,7 @@ function(
 		peaknumb<-0
 		RT<-c()
 		for(i in 1:length(mz1)){
-			if(any(mz1[[i]]$metaData$msLevel==MSlevel)){
+			if((any(mz1[[i]]$metaData$msLevel==MSlevel)) & (mz1[[i]]$metaData$peaksCount>0)){
 				if((minRT!=FALSE)&(mz1[[i]]$metaData$retentionTime<minRT)) next
 				if((maxRT!=FALSE)&(mz1[[i]]$metaData$retentionTime>maxRT)) next
 				if(any(names(mz1[[i]]$metaData)=="centroided")){
@@ -94,7 +94,6 @@ function(
 				}else{
 					cat("\nYou have ensured your data is centroided ...\n")
 				}
-				
 				RT<-c(RT,mz1[[i]]$metaData$retentionTime)	
 				peaknumb<-c(peaknumb + sum(mz1[[i]][[1]]$mass>=min_mz & mz1[[i]][[1]]$mass<=max_mz,na.rm=TRUE))
 			}
@@ -112,7 +111,7 @@ function(
 		}
 		for(i in 1:length(mz1)){
 			if(progbar==TRUE){setWinProgressBar(prog, i, title = "Extract scans", label = NULL);}
-			if(any(mz1[[i]]$metaData$msLevel==MSlevel)){
+			if(any(mz1[[i]]$metaData$msLevel==MSlevel) & (mz1[[i]]$metaData$peaksCount>0)){
 				if((minRT!=FALSE)&(mz1[[i]]$metaData$retentionTime<minRT)) next
 				if((maxRT!=FALSE)&(mz1[[i]]$metaData$retentionTime>maxRT)) next
 				to<-(from+sum(mz1[[i]][[1]]$mass>=min_mz & mz1[[i]][[1]]$mass<=max_mz,na.rm=TRUE)-1)
