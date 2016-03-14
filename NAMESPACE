@@ -2,5 +2,9 @@ exportPattern(readMSdata,mzpart,mzagglom,mzclust,mzpick,enviPickbatch,enviPickwr
 
 import("shiny")
 importFrom("readMzXmlData",readMzXmlFile)
+import("grDevices")
+import("graphics")
+importFrom("stats", "var")
+import("utils")
 
 useDynLib(enviPick, getEIC,  masspart, rtpart, densvec, gapfill, pickpeak, picklist, plotit, binRT, binmz, agglom, indexed, partID)

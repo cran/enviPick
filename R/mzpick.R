@@ -60,6 +60,7 @@ function(           MSlist,
 			as.numeric(drtfill),
 			PACKAGE="enviPick"
 			)
+		  out1<-matrix(out1,ncol=10);
 		  colnames(out1)<-c("m/z","intens","RT","index","intens_filt","1pick","pickcrit","baseline","intens_corr","2pick");                       
 		  # Filter step ############################################################
 		  out1[,5]<-out1[,2];   # yet to be implemented!
@@ -111,7 +112,7 @@ function(           MSlist,
 			PACKAGE="enviPick"
 		)
 		if(any(index[,2]!=0)){
-			index<-index[index[,2]!=0,];
+			index<-index[index[,2]!=0,,drop=FALSE];
 			partID<-.Call("partID",
 				as.integer(index),
 				as.integer(length(MSlist[[4]][[2]][,7])),

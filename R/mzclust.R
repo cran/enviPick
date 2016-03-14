@@ -63,25 +63,25 @@ function(           MSlist,
     if(progbar==TRUE){close(prog)};
     maxit<-max(MSlist[[4]][[2]][,6]);
     if(maxit>0){
-      index <- .Call("indexed",
-        as.integer(MSlist[[4]][[2]][,6]),
-        as.numeric(MSlist[[4]][[2]][,2]),
-        as.integer(minpeak),
-        as.numeric(maxint),
-        as.integer(maxit),
-        PACKAGE="enviPick"
-      )
+		index <- .Call("indexed",
+			as.integer(MSlist[[4]][[2]][,6]),
+			as.numeric(MSlist[[4]][[2]][,2]),
+			as.integer(minpeak),
+			as.numeric(maxint),
+			as.integer(maxit),
+			PACKAGE="enviPick"
+		)
     }
     if(any(index[,2]!=0)){
-      index<-index[index[,2]!=0,];
-      colnames(index)<-c("start_ID","end_ID","number_peaks");
-      MSlist[[6]]<-index;
-      partID<-.Call("partID",
-        as.integer(index),
-        as.integer(length(MSlist[[4]][[2]][,6])),
-        PACKAGE="enviPick"  
-      )
-      MSlist[[4]][[2]][,6]<-partID;
+		index<-index[index[,2]!=0,,drop=FALSE];
+		colnames(index)<-c("start_ID","end_ID","number_peaks");
+		MSlist[[6]]<-index;
+		partID<-.Call("partID",
+			as.integer(index),
+			as.integer(length(MSlist[[4]][[2]][,6])),
+			PACKAGE="enviPick"  
+		)
+		MSlist[[4]][[2]][,6]<-partID;
     }
     ############################################################################
     MSlist[[1]][[3]]<-TRUE;

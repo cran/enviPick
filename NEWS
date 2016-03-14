@@ -1,5 +1,9 @@
 enviPick News
 
+CHANGES in version 1.4:
+
+	(1) Debugs on single-rowed matrices
+	
 CHANGES in version 1.3:
 
 	(1) Skips empty MS scans

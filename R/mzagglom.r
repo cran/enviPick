@@ -50,7 +50,7 @@ mzagglom<-function(   MSlist,
 		as.integer(maxit),
 		PACKAGE="enviPick" 
 	)
-	index<-index[index[,2]!=0,]
+	index<-index[index[,2]!=0,,drop=FALSE]
 	colnames(index)<-c("start_ID","end_ID","number_peaks")
 	MSlist[[5]]<-index
 	partID<-.Call("partID",

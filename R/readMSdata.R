@@ -83,6 +83,7 @@ function(
 		mz1<-readMzXmlFile(file.path(filepath.mzXML),removeMetaData = FALSE,verbose = FALSE)
 		peaknumb<-0
 		RT<-c()
+		done_cen<-FALSE
 		for(i in 1:length(mz1)){
 			if((any(mz1[[i]]$metaData$msLevel==MSlevel)) & (mz1[[i]]$metaData$peaksCount>0)){
 				if((minRT!=FALSE)&(mz1[[i]]$metaData$retentionTime<minRT)) next
@@ -92,7 +93,10 @@ function(
 						stop("\nYour .mzXML-file has not been centroided.\n")
 					}
 				}else{
-					cat("\nYou have ensured your data is centroided ...\n")
+					if(!done_cen){
+						cat("\nYou have ensured your data is centroided ...\n");
+						done_cen<-TRUE
+					}
 				}
 				RT<-c(RT,mz1[[i]]$metaData$retentionTime)	
 				peaknumb<-c(peaknumb + sum(mz1[[i]][[1]]$mass>=min_mz & mz1[[i]][[1]]$mass<=max_mz,na.rm=TRUE))
