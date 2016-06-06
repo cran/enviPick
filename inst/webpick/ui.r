@@ -42,7 +42,8 @@ shinyUI(pageWithSidebar(
        tabPanel("(3) Advanced",
           numericInput("ended", "How often can a peak detection fail to end the recursion? - peak picking", 1),
           numericInput("weight", "Weight for assigning measurements to a peak - peak picking", 1),
-          sliderInput("maxint", "Upper log10(intensity) safety threshold", min = 0, max = 15, value = 6.7, step= .1)
+          sliderInput("maxint", "Upper log10(intensity) safety threshold", min = 0, max = 15, value = 6.7, step= .1),
+		  selectInput("ion_mode", "Polarity (ion mode)", choices=c("FALSE","positive","negative"),selected="FALSE",multiple = FALSE)
        )
      ),
      

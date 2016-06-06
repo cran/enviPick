@@ -1,5 +1,9 @@
 enviPick News
 
+CHANGES in version 1.5:
+
+	(1) readMSdata function: set polarity of scans to be read
+
 CHANGES in version 1.4:
 
 	(1) Debugs on single-rowed matrices

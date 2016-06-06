@@ -50,12 +50,12 @@ observe({ ######################################################################
       if(status=="Step 3 of 4 - build EIC cluster ... wait"){
         MSlist<<-mzclust(      
               MSlist,
-                isolate(input$dmzdens),
+              isolate(input$dmzdens),
               ppm=TRUE,
-                #isolate(input$drtdens1),
-                60,
-                isolate(input$minpeak),
-                10^(isolate(input$maxint)),
+              #isolate(input$drtdens1),
+              60,
+              isolate(input$minpeak),
+              10^(isolate(input$maxint)),
               progbar=FALSE,
               merged=TRUE,
               to=FALSE,
@@ -72,11 +72,11 @@ observe({ ######################################################################
       if(status=="Step 2 of 4 - partitioning ... wait"){
         MSlist<<-mzagglom(
               MSlist,
-                ((isolate(input$dmzdens)*2)+1),
+              ((isolate(input$dmzdens)*2)+1),
               ppm=TRUE,  
-                isolate(input$drtgap),
-                isolate(input$minpeak),
-                10^(isolate(input$maxint)),
+              isolate(input$drtgap),
+              isolate(input$minpeak),
+              10^(isolate(input$maxint)),
               progbar=FALSE)
         output$error<-renderText(MSlist[[1]][[1]])
         status<<-"Step 3 of 4 - build EIC cluster ... wait"
@@ -88,13 +88,20 @@ observe({ ######################################################################
       }    
       # (1) data upload ########################################################
       if(status=="Step 1 of 4 - reading data ... wait"){
+		if(isolate(input$ion_mode)=="FALSE"){
+			use_mode<-FALSE
+		}else{
+			use_mode<-isolate(input$ion_mode)
+		}
         MSlist  <<- readMSdata(
               isolate(input$file1[[4]]),
               MSlevel=isolate(input$MSlevel),
               minRT=FALSE,
               maxRT=FALSE,
               minmz=FALSE,
-              maxmz=FALSE)      
+              maxmz=FALSE,
+			  ion_mode=use_mode
+			  )      
         output$error<-renderText(MSlist[[1]][[1]])
         status<<-"Step 2 of 4 - partitioning ... wait"
         time_elapsed<-c((proc.time() - ptm)[[3]]/60)
@@ -103,7 +110,7 @@ observe({ ######################################################################
         output$text5<-renderText(time_passed)
         output$text2<-renderText(status)
       }        
-      # (0) initialize #########°###############################################
+      # (0) initialize ########################################################
       if(status=="open"){
         ptm <<- proc.time()
         status<<-"Step 1 of 4 - reading data ... wait"

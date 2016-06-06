@@ -19,8 +19,8 @@ function(
                       minint=1E5,
                       maxint=1E7,
                       ended=2,
+					  ion_mode=FALSE,
                       progbar=FALSE
-
       ){
 
       ##########################################################################
@@ -48,25 +48,26 @@ function(
       for(n in 1:length(filed)){
         if(progbar==TRUE){    setWinProgressBar(prog, n, title = paste("Peak Picking - file #",n), label = NULL);}                      
 			MSlist<-enviPickwrap(     
-                      file.path(paste(folderin,"\\",filed[n],sep="")),
-                      MSlevel=c(1),
-                      dmzgap=5,  
-                      dmzdens=4,       
-                      ppm=TRUE,
-                      drtgap=1000, 
-                      drtsmall=20,
-                      drtdens=250,
-                      drtfill=10,
-                      drttotal=200,
-                      minpeak=4,
-                      recurs=10,
-                      weight=2,
-                      SB=3,
-                      SN=2,
-                      minint=10E4,
-                      maxint=10E6,
-                      ended=2,
-                      progbar=FALSE)              
+						file.path(paste(folderin,"\\",filed[n],sep="")),
+						MSlevel=MSlevel,
+						dmzgap=dmzgap,  
+						dmzdens=dmzdens,       
+						ppm=ppm,
+						drtgap=drtgap, 
+						drtsmall=drtsmall,
+						drtdens=drtdens,
+						drtfill=drtfill,
+						drttotal=drttotal,
+						minpeak=minpeak,
+						recurs=recurs,
+						weight=weight,
+						SB=SB,
+						SN=SN,
+						minint=minint,
+						maxint=maxint,
+						ended=ended,
+						ion_mode=ion_mode,
+						progbar=FALSE)              
 			file_out<-paste(filed[n],"_picked",sep="")
 			writePeaklist(MSlist,folderout,file_out)
       }

@@ -17,6 +17,7 @@ function(             filepath.mzXML,
                       minint=1E5,
                       maxint=1E7,
                       ended=2,
+					  ion_mode=FALSE,
                       progbar=FALSE
                        ){
 
@@ -42,7 +43,7 @@ function(             filepath.mzXML,
       ##########################################################################
       if(progbar==TRUE){    prog<-winProgressBar("Peak Picking",min=0,max=5);
                             setWinProgressBar(prog, 1, title = "Peak Picking - reading scans", label = NULL);}                      
-      MSlist<-readMSdata(filepath.mzXML,MSlevel,progbar=FALSE,minRT=FALSE,maxRT=FALSE,minmz=FALSE,maxmz=FALSE);   
+      MSlist<-readMSdata(filepath.mzXML,MSlevel,progbar=FALSE,minRT=FALSE,maxRT=FALSE,minmz=FALSE,maxmz=FALSE,ion_mode=ion_mode);   
       if(progbar==TRUE){setWinProgressBar(prog, 2, title = "Peak Picking - Partition", label = NULL);}       
       MSlist<-mzagglom(MSlist,dmzgap,ppm,drtgap,minpeak,maxint,progbar=FALSE)     
       if(progbar==TRUE){setWinProgressBar(prog, 3, title = "Peak Picking - EIC cluster", label = NULL);}

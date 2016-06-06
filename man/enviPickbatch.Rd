@@ -13,7 +13,7 @@ Given a folder of .mzXML input files and subsequent processing, .csv peak tables
 enviPickbatch(folderin, folderout, MSlevel=c(1), dmzgap=15, dmzdens=4, 
 ppm=TRUE, drtgap=500, drtsmall=20, drtdens=250, drtfill=10, drttotal=200, 
 minpeak=4, recurs=10, weight=2, SB=3, SN=2, minint=1E5, maxint=1E7, 
-ended=2, progbar=FALSE)
+ended=2, ion_mode=FALSE, progbar=FALSE)
 }
 
 \arguments{
@@ -36,6 +36,7 @@ ended=2, progbar=FALSE)
 	\item{minint}{Minimum intensity of a peak, \code{\link[enviPick]{mzpick}}}
 	\item{maxint}{Peaks above this intensity are alwas included, regardless of checks for \code{SB} or \code{SN}, \code{\link[enviPick]{mzpick}}}
 	\item{ended}{Within the peak detection recursion set by argument \code{recurs}, how often can a peak detection fail, to end the recursion? \code{\link[enviPick]{mzpick}}}
+	\item{ion_mode}{"positive" or "negative" ionization. Otherwise set to FALSE, see details.}
 	\item{progbar}{Show a progress bar (TRUE or FALSE)? May only work under Windows OS.}
   }
   
@@ -43,6 +44,8 @@ ended=2, progbar=FALSE)
 \details{
 For further details on the parameter settings, please refer to the arguments of the underlying functions \code{\link[enviPick]{readMSdata}}, 
 \code{\link[enviPick]{mzagglom}}, \code{\link[enviPick]{mzclust}} and \code{\link[enviPick]{mzpick}}. 
+\code{ion_mode} allows to filter scans of a specific polarity from .mzXML files, if not set to FALSE; useful for
+files acquired under polarity switching.
 }
 
 \value{
